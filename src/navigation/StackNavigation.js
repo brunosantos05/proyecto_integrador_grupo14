@@ -14,7 +14,6 @@ class StackNavigation extends Component {
     super();
     this.state = {
       loggedIn: false,
-      loading: true,
     };
   }
 
@@ -23,26 +22,17 @@ class StackNavigation extends Component {
       if (user) {
         this.setState({
           loggedIn: true,
-          loading: false,
         });
       } else {
         this.setState({
           loggedIn: false,
-          loading: false,
         });
       }
     });
   }
 
   render() {
-    if (this.state.loading) {
-      return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <ActivityIndicator size="large" color="red" />
-        </View>
-      );
-    }
-
+    
     return (
       <NavigationContainer>
         <Stack.Navigator screenOptions={{ headerShown: false }}>

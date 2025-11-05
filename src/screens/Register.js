@@ -17,21 +17,24 @@ class Register extends Component {
     const { email, password, userName } = this.state;
 
    
-    auth.createUserWithEmailAndPassword(email, password)
+   auth.createUserWithEmailAndPassword(email, password)
       .then(() => {
+        db.collection('users')
+          .add({
+            email: email,
+            userName: userName,
+            createdAt: Date.now(),
+          })
+          .then(() => {
+            this.props.navigation.navigate('Login');
+            auth.signOut();
 
-        db.collection('users').add({
-          email: email,
-          userName: userName,
-          createdAt: Date.now(),
-        })
-        .then(() => {
-          this.props.navigation.navigate('Login');
-        });
+          });
       })
       .catch(error => {
-        this.setState({ errorMensaje: error.message });
+        this.setState({ errorMessage: error.message });
       });
+
   }
 
   render() {
