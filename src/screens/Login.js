@@ -108,6 +108,6 @@ const styles = StyleSheet.create({
   },
   error: {
     color: 'red',
-    marginVertical: 5,
-  },
+    marginVertical: 5,
+  },
 });

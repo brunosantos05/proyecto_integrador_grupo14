@@ -16,7 +16,7 @@ class Profile extends Component {
     const currentUser = auth.currentUser;
     this.setState({ user: currentUser });
 
-    // para agarrar el nombre del usuario del logueado
+
     db.collection('users')
       .where('email', '==', currentUser.email)
       .onSnapshot((docs) => {
@@ -27,7 +27,7 @@ class Profile extends Component {
         this.setState({ userData: userInfo });
       });
 
-    // para agarrar los posteos creados por el usuario logueado
+
     db.collection('posts')
       .where('owner', '==', currentUser.email)
       .orderBy('createdAt', 'desc')
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   deleteButton: {
-    backgroundColor: 'pink',
+    backgroundColor: 'red',
     padding: 5,
     borderRadius: 6,
     alignSelf: 'flex-end',
@@ -134,5 +134,5 @@ const styles = StyleSheet.create({
   logoutText: {
     color: 'white',
     fontWeight: 'bold',
-  },
+  },
 });
